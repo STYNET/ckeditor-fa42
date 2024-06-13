@@ -100,11 +100,11 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
      });
      */
     }
-	function getSizeOptions(selectList){
+    function getSizeOptions(selectList){
         for (i in fa42Sizes) {
             selectList.add(fa42Sizes[i].replace(/fa-/,''), fa42Sizes[i]);
-	   	}
-	}
+        }
+    }
 
     function getStyleOptions (selectList) {
         switch (parseInt(fa42Major)) {
@@ -160,14 +160,14 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
     }
 
     return {
-        title: 'fa42 using config: Font Awesome v' + fa42Version + ' (' + fa42Level + ')',
+        title: editor.lang.fa42.title+'Font Awesome v' + fa42Version + ' (' + fa42Level + ')',
         minWidth: 720,
         minHeight: 200,
 
         contents: [
             {
                 id: 'options',
-                label: 'Main Options',
+                label: editor.lang.fa42.mainOptions,
                 elements: [
                     {
                         type: 'hbox',
@@ -176,9 +176,9 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                             {
                                 type: 'html',
                                 id: 'fa42List',
-                                label: 'Select Font Awesome Icon',
-                                html: '<label>Select Font Awesome Icon</label>' + getIconLayout() +
-                                    '<div id="fa42IconSearch"><input type="text" id="fa42IconSearchField" placeholder="Search..." onkeyup="_fa42Search(this.value)">' +
+                                label: editor.lang.fa42.selectFontAwesomeIcon,
+                                html: '<label>'+editor.lang.fa42.selectFontAwesomeIcon+'</label>' + getIconLayout() +
+                                    '<div id="fa42IconSearch"><input type="text" id="fa42IconSearchField" placeholder="'+editor.lang.fa42.search+'" onkeyup="_fa42Search(this.value)">' +
                                     '<i class="fa fa-times-circle" onclick="_fa42Search(\'_clear\')" style="cursor:default;"></i>' +
                                     '</div>'
                             },
@@ -189,7 +189,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                             type: 'html',
                                             id: 'fa42Icon',
-                                            html: '<div id="fa42-icon"><label>Font Awesome Icon Preview</label><p class="fa42IconPreview"><' + fa42Tag + ' id="fa42-icon-preview-wrapper" class="fa"><' + fa42Tag + ' id="fa42-icon-preview" class="' + fa42Regular + ' fa-flag"></' + fa42Tag + '></' + fa42Tag + '></p></div>',
+                                            html: '<div id="fa42-icon"><label>'+editor.lang.fa42.fontAwesomeIconPreview+'</label><p class="fa42IconPreview"><' + fa42Tag + ' id="fa42-icon-preview-wrapper" class="fa"><' + fa42Tag + ' id="fa42-icon-preview" class="' + fa42Regular + ' fa-flag"></' + fa42Tag + '></' + fa42Tag + '></p></div>',
                                             onShow: function() {
                                                 // set global preview box 1 for later use
                                                 previewIcon = document.getElementById('fa42-icon-preview');
@@ -198,14 +198,14 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                             type: 'html',
                                             id: 'fa42Control',
-                                            html: '<h5 style="text-align:center;font-weight:bold;">------- Basic Style Options -------</h5>'
+                                            html: '<h5 style="text-align:center;font-weight:bold;">------- '+editor.lang.fa42.basicStyleOptions+' -------</h5>'
                                         }
                                     ];
                                     if (fa42Major > 4) {
                                         children.push({
                                             type: 'checkbox',
                                             id: 'fa42Brand',
-                                            label: '   Brand Icon?',
+                                            label: editor.lang.fa42.brandIcon,
                                             onClick: function(widget) {
                                                 _fa42SetBrand(this.getValue());
                                             }
@@ -218,7 +218,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                             type: 'select',
                                             id: 'fa42FontStyle',
-                                            label: 'Font Style',
+                                            label: editor.lang.fa42.fontStyle,
                                             items: [],
                                             onLoad: function(widget) {
                                                 getStyleOptions(this);
@@ -231,7 +231,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         children.push({
                                             type: 'checkbox',
                                             id: 'fa42-fa-swap-opacity',
-                                            label: ' Swap Opacity (Duotone)',
+                                            label: editor.lang.fa42.swapOpacity,
                                             onClick: function(widget) {
                                                 if (this.getValue() == true) {
                                                     previewIcon.classList.add('fa-swap-opacity');
@@ -251,7 +251,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                         type: 'select',
                                         id: 'fa42FontSize',
-                                        label: 'Font Size',
+                                        label: editor.lang.fa42.fontSize,
                                         items: [[ editor.lang.common.notSet, '' ]],
                                         onLoad: function(widget) {
                                             getSizeOptions(this);
@@ -267,7 +267,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                             type: 'checkbox',
                                             id: 'fa42-fa-fw',
-                                            label: ' Fixed Width',
+                                            label: editor.lang.fa42.fixedWidth,
                                             onClick: function(widget) {
                                                 if (this.getValue() == true) {
                                                     previewIcon.classList.add('fa-fw');
@@ -285,7 +285,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                         {
                                             type: 'button',
                                             id: 'fa42FontColor',
-                                            label: 'Change Icon Color',
+                                            label: editor.lang.fa42.changeIconColor,
                                             onload: function() { },
                                             onClick: function() {
                                                 editor.getColorFromDialog( function(color) {
@@ -315,7 +315,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
             },
             {
                 id: 'effects',
-                label: 'Effects',
+                label: editor.lang.fa42.effects,
                 elements: [
                     {
                         type:'hbox',
@@ -335,7 +335,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-rotate-90',
-                                                        label: ' Rotate 90deg',
+                                                        label: editor.lang.fa42.rotate90,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-rotate-90');
                                                         }
@@ -343,7 +343,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-rotate-180',
-                                                        label: ' Rotate 180deg',
+                                                        label: editor.lang.fa42.rotate180,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-rotate-180');
                                                         }
@@ -351,7 +351,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-rotate-270',
-                                                        label: ' Rotate 270deg',
+                                                        label: editor.lang.fa42.rotate270,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-rotate-270');
                                                         }
@@ -363,7 +363,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-flip-horizontal',
-                                                        label: ' Flip Horizontal',
+                                                        label: editor.lang.fa42.flipHorizontal,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-flip-horizontal');
                                                         }
@@ -371,7 +371,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-flip-vertical',
-                                                        label: ' Flip Vertical',
+                                                        label: editor.lang.fa42.flipVertical,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-flip-vertical');
                                                         }
@@ -379,7 +379,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-flip-both',
-                                                        label: ' Flip Both',
+                                                        label: editor.lang.fa42.flipBoth,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-flip-both');
                                                         }
@@ -396,7 +396,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                     {
                                                         type: 'checkbox',
                                                         id: 'fa42-fa-spin',
-                                                        label: ' Spin',
+                                                        label: editor.lang.fa42.spin,
                                                         onClick: function() {
                                                             _fa42UpdateTransformations(this.getValue(), 'fa-spin');
                                                         }
@@ -407,7 +407,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                             {
                                                                 type: 'checkbox',
                                                                 id: 'fa42-fa-spin-pulse',
-                                                                label: 'Pulse',
+                                                                label: editor.lang.fa42.pulse,
                                                                 onClick: function() {
                                                                     _fa42UpdateTransformations(this.getValue(), 'fa-spin-pulse');
                                                                 }
@@ -415,7 +415,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                             {
                                                                 type: 'checkbox',
                                                                 id: 'fa42-fa-spin-reverse',
-                                                                label: ' Spin Reverse',
+                                                                label: editor.lang.fa42.spinReverse,
                                                                 onClick: function() {
                                                                     var dialog = CKEDITOR.dialog.getCurrent();
                                                                     // one of fa-spin or fa-spin-pulse must be selected to spin reverse
@@ -433,7 +433,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                             {
                                                                 type: 'checkbox',
                                                                 id: 'fa42-fa-pulse',
-                                                                label: ' Pulse',
+                                                                label: editor.lang.fa42.pulse,
                                                                 onClick: function() {
                                                                     _fa42UpdateTransformations(this.getValue(), 'fa-pulse');
                                                                 }
@@ -452,7 +452,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-beat',
-                                                            label: 'Beat',
+                                                            label: editor.lang.fa42.beat,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-beat');
                                                             }
@@ -460,7 +460,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-fade',
-                                                            label: 'Fade',
+                                                            label: editor.lang.fa42.fade,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-fade');
                                                             }
@@ -468,7 +468,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-beat-fade',
-                                                            label: 'Beat-Fade',
+                                                            label: editor.lang.fa42.beatFade,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-beat-fade');
                                                             }
@@ -481,7 +481,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-bounce',
-                                                            label: 'Bounce',
+                                                            label: editor.lang.fa42.bounce,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-bounce');
                                                             }
@@ -489,7 +489,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-flip',
-                                                            label: 'Flip',
+                                                            label: editor.lang.fa42.flip,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-flip');
                                                             }
@@ -497,7 +497,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                                                         {
                                                             type: 'checkbox',
                                                             id: 'fa42fa-shake',
-                                                            label: 'Shake',
+                                                            label: editor.lang.fa42.shake,
                                                             onClick: function() {
                                                                 _fa42UpdateTransformations(this.getValue(), 'fa-shake');
                                                             }
@@ -512,7 +512,7 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
                             {
                                 type: 'html',
                                 id: 'fa42Icon',
-                                html: '<div id="fa42-icon2"><label>Font Awesome Icon Preview</label><p class="fa42IconPreview"><' + fa42Tag + ' id="fa42-icon-preview2" class="' + fa42Regular + ' fa-flag"></' + fa42Tag + '></p></div>',
+                                html: '<div id="fa42-icon2"><label>'+editor.lang.fa42.fontAwesomeIconPreview+'</label><p class="fa42IconPreview"><' + fa42Tag + ' id="fa42-icon-preview2" class="' + fa42Regular + ' fa-flag"></' + fa42Tag + '></p></div>',
                                 onShow: function() {
                                     // set global preview box 2 for later use
                                     previewIcon2 = document.getElementById('fa42-icon-preview2');
@@ -524,12 +524,11 @@ var fa42DialogObj = CKEDITOR.dialog.add('fa42Dialog', function( editor ) {
             },
             {
                 id: 'advanced',
-                label: 'Advanced',
+                label: editor.lang.fa42.advanced,
                 elements: [
                     {
                         type: 'html',
-                        html: 'A description? It\'s advanced... maybe just put in the fields with titles...<br><br>Custom <i>style</i> fields? <br><br>' +
-                            '--fa-primary-opacity. --fa-secondary-opacity, --fa-primary-color, --fa-secondary-color<br>--fa-beat-scale, --fa-fade-opacity, --etc'
+                        html: editor.lang.fa42.advancedDescription,
                     }
                 ]
 
