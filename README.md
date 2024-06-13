@@ -63,6 +63,20 @@ The above will force the plugin to (try) to work with FontAwesome Pro, version 1
 
 Technically, this would then make the plugin use v6 options/icons, and effects/etc available since 6.4.
 
+## Translation
+
+The default language is English (en)
+
+Translations are already available for other languages:
+english, deutsch, español, italiano, 中文, русский
+
+To set a language (e.g. French):
+
+
+```js
+CKEDITOR.config.language = 'fr';
+```
+
 ## Future Versions
 
 See [DEVNOTES.md](DEVNOTES.md) for notes on what I would like to add or update moving forward. The (currently useless) **Advanced** tab I would at least like to give the ability to include custom CSS styling. For example to add "fa-rotate-by" class, so user can then set a custom "--fa-rotate-angle: 42deg", or adjust colors and opacity levels of Dutone icons.
