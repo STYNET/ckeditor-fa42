@@ -68,14 +68,15 @@ Technically, this would then make the plugin use v6 options/icons, and effects/e
 The default language is English (en)
 
 Translations are already available for other languages:
-english, deutsch, español, italiano, 中文, русский
+english (en), français (fr), deutsch (de), español (es), italiano (it), 中文 (zh), русский (ru)
 
 To set a language (e.g. French):
-
 
 ```js
 CKEDITOR.config.language = 'fr';
 ```
+
+To add other languages, simply add a file to the plugin's fa42/lang directory.
 
 ## Future Versions
 
